@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TinyGPT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #1da341;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 18px;
+            background-color: #1da341;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #14782f;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TinyGPT</h1>
+    </header>
+    <div class="container">
+        <form method="POST">
+            <label for="text">Enter your request:</label>
+            <input type="text" id="text" name="text" required>
+            <button type="submit">Submit</button>
+        </form>
+        <hr>
+        {% if output %}
+            <p><strong>Your request :</strong> {{ user_input }}</p>
+            <p><strong>ChatGPT answer:</strong> {{ output }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

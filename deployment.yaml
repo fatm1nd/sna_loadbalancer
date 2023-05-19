@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sna-project-balancer
+spec:
+  selector:
+    app: sna-project
+  ports:
+  - protocol: "TCP"
+    port: 8080
+    targetPort: 5000
+  externalIPs:
+  - 10.244.1.65
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sna-project
+spec:
+  selector:
+    matchLabels:
+      app: sna-project
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: sna-project
+    spec:
+      containers:
+      - name: sna-project
+        image: flask-kubernetes:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        command: ["python"]
+        args: ["/app/app.py"]
